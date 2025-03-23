@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tagebuch</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: auto; padding: 20px; }
+        textarea { width: 100%; height: 150px; }
+        button { margin-top: 10px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h1>Tagebuch – {{ today }}</h1>
+
+    {% if entry %}
+        <p><strong>Dein Eintrag für heute:</strong></p>
+        <p>{{ entry }}</p>
+    {% else %}
+        <p><em>Du hast heute noch nichts geschrieben!</em></p>
+        <form method="POST">
+            <textarea name="entry" placeholder="Schreib hier deinen Eintrag..."></textarea><br>
+            <button type="submit">Speichern</button>
+        </form>
+    {% endif %}
+</body>
+</html>
