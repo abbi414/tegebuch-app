@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: tagebuch-app
+    name: taschenrechner
     env: python
     buildCommand: ""
     startCommand: "python main.py"

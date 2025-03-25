@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tagebuch</title>
+    <meta charset="UTF-8">
+    <title>Taschenrechner</title>
     <style>
-        body { font-family: Arial; max-width: 600px; margin: auto; padding: 20px; }
-        textarea { width: 100%; height: 150px; }
-        button { margin-top: 10px; padding: 10px 20px; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .calc-container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        input, select {
+            padding: 10px;
+            margin: 5px 0;
+            width: calc(100% - 22px);
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Tagebuch – {{ today }}</h1>
-
-    {% if entry %}
-        <p><strong>Dein Eintrag für heute:</strong></p>
-        <p>{{ entry }}</p>
-    {% else %}
-        <p><em>Du hast heute noch nichts geschrieben!</em></p>
-        <form method="POST">
-            <textarea name="entry" placeholder="Schreib hier deinen Eintrag..."></textarea><br>
-            <button type="submit">Speichern</button>
+    <div class="calc-container">
+        <h1>Einfacher Taschenrechner</h1>
+        <form method="post">
+            <input type="number" name="num1" placeholder="Erste Zahl" step="any" required>
+            <input type="number" name="num2" placeholder="Zweite Zahl" step="any" required>
+            <select name="operation" required>
+                <option value="">Operation auswählen</option>
+                <option value="add">Addition (+)</option>
+                <option value="subtract">Subtraktion (-)</option>
+                <option value="multiply">Multiplikation (×)</option>
+                <option value="divide">Division (÷)</option>
+            </select>
+            <button type="submit">Berechnen</button>
         </form>
-    {% endif %}
+        {% if result is not none %}
+            <h2>Ergebnis: {{ result }}</h2>
+        {% endif %}
+        {% if error %}
+            <h2 style="color:red;">Fehler: {{ error }}</h2>
+        {% endif %}
+    </div>
 </body>
 </html>
